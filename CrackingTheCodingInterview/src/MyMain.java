@@ -5,6 +5,7 @@ public class MyMain {
 
 
     public static void main(String[] args){
+        MyMain mm = new MyMain();
 
     }
 }
