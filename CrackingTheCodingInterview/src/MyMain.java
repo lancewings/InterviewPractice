@@ -12,5 +12,6 @@ public class MyMain {
         int x  = 64;
         System.out.println(x >> 1);
         System.out.println(x >> 1);
+        System.out.println("test");
     }
 }
