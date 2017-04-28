@@ -1,7 +1,7 @@
 /**
  * Created by lanceji on 4/17/17.
  */
-public class TestUnit {
+public class StringsAndArray {
     static boolean isUniqueChars1(String input){
         //assume there is only lower-cased characters
         //since there is only 26 possibilities, we can just use a integer to check(32 bit)
@@ -90,11 +90,19 @@ public class TestUnit {
         return (countDiff <= 1);
     }
 
+    boolean isRotation(String str1, String str2){
+        if(str1 != null && str2 != null && str1.length() == str2.length() && str1.length() > 0){
+            String str1str1 = str1 + str1;
+            return str1str1.indexOf(str2) >= 0;
+        }
+        return false;
+    }
+
 
     String stringCompression(String input){
         if(input==null || input.length() ==0)
             return input;
-        char prev = input.charAt(0),cur='';
+        char prev = input.charAt(0),cur='\0';
         int index = 1,count = 1;
         StringBuilder sb = new StringBuilder();
         sb.append(prev);
@@ -113,6 +121,27 @@ public class TestUnit {
 
         return sb.length()>=input.length()?input:sb.toString();
     }
+
+    int[][] rotateMatrix(int[][] matrix){//left rotate 90 degrees
+        if(matrix.length == 0 || matrix.length != matrix[0].length)
+            return null;
+        int n = matrix.length;
+        for(int layer=0;layer < n/2;layer++){
+            int first = layer;
+            int last = n -1 - layer;
+            for(int i=first;i<last;i++){
+                int offset = i-first;
+                int top = matrix[first][i];
+
+                matrix[first][i] = matrix[last-offset][first];//left -> top
+                matrix[last-offset][first] = matrix[last][last - offset];//bottom -> left
+                matrix[last][last-offset] = matrix[i][last];//right->bottom
+                matrix[i][last]= top;//right<- saved top
+            }
+        }
+        return matrix;
+    }
+
 
     public static void main(String[] args){
         /*System.out.println(clearBitsMSBthroughI(15, 2));

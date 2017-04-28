@@ -7,11 +7,7 @@ public class MyMain {
     }
 
     public static void main(String[] args){
-        MyMain mm = new MyMain();
-        mm.RandomNode();
-        int x  = 64;
-        System.out.println(x >> 1);
-        System.out.println(x >> 1);
-        System.out.println("test");
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.length());
     }
 }
