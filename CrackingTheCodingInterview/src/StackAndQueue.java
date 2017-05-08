@@ -199,7 +199,7 @@ public class StackAndQueue {
 
     class AnimalShelter{
         abstract class Animal{
-            
+
         }
     }
 }
