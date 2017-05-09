@@ -68,12 +68,51 @@ public class RecursiveDynamicProgramming {
             return result;
         }
     }
+    int SIZE = 8;
+
+    List<int[]> EightQueens(){
+
+        List<int[]> result = new ArrayList<int[]>();
+        int [] columns = new int[SIZE];
+        for(int i=0;i<SIZE;i++)
+            columns[i] = -1;
+        placeQueens(0, columns, result);
+        return result;
+    }
+
+    void placeQueens(int row,int[] prevLinesSolution, List<int[]> result){
+        if(row == SIZE)
+            result.add(prevLinesSolution);
+        else{
+            for(int c=0;c<SIZE;c++){
+                if(checkValid(row, c, prevLinesSolution)){
+                    prevLinesSolution[row] = c;
+                    placeQueens(row + 1, prevLinesSolution,result);
+                }
+            }
+
+        }
+    }
+
+    boolean checkValid(int row, int col, int[] prevSolution){
+        for(int r=0;r < row;r++){
+            int c = prevSolution[r];
+            if(c == col)
+                return false;
+
+            if((row - r) == Math.abs(col-c))
+                return false;
+        }
+        return true;
+    }
 
     public static void main(String[] args){
         RecursiveDynamicProgramming test = new RecursiveDynamicProgramming();
         /*List<String> result = test.getValidParen(4);
         for(String s:result)
             System.out.println(s);*/
-        System.out.println(test.Coins(10));
+//        System.out.println(test.Coins(10));
+        List<int[]> result = test.EightQueens();
+        System.out.println();
     }
 }
